@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const app = express();
 dotenv.config({path:'./config.env'});
 require('./db/connection');
+app.use(express.json());
+app.use(require('./router/auth'));
 const User = require('./model/userSchema');
 
 const PORT=process.env.PORT;
@@ -14,7 +16,7 @@ const middleware = (req, res, next)=>{
 }
 
 app.get('/', (req, res) => {
-    res.send('Hello from the server');
+    res.send('Hello route from the server');
 });
 
 app.get('/about', middleware, (req, res) => {
@@ -32,6 +34,7 @@ app.get('/signin', (req, res) => {
 app.get('/signup', (req, res) => {
     res.send('Register from the server');
 });
+
 
 app.listen(PORT, ()=> {
     console.log(`server is running at port ${PORT}`);
