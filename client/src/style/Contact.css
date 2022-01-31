@@ -1,0 +1,47 @@
+.contact-info-item{
+    border:2px solid rgb(248, 233, 233);
+    box-shadow:5px 5px 3px rgb(206, 197, 197);
+    width:26%;
+    height: 10vh;
+}
+
+.contact-info-img{
+    margin:auto 3vh;
+}
+
+.contact-info-content{
+    margin:auto 5px;
+}
+
+.contact-info-title{
+    font-weight:700;
+}
+
+.contact-form{
+    box-shadow: 5px 5px 10px grey;
+    width:60%;
+    margin:10vh auto;
+}
+
+.contact-form-title{
+    font-weight:600;
+    font-size:4vh;
+}
+
+#contact-form{
+    margin-top:4vh;
+}
+
+.input-field{
+    padding:1vh 3vh;
+}
+
+.contact-submit-button{
+    background:rgb(116, 179, 238);
+    padding:1vh;
+    border:none;
+    border:2px solid rgb(0, 60, 255);
+    border-radius: 5px;
+    padding:1vh 3vh;
+    margin-top:3vh;
+}
