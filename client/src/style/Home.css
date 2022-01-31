@@ -1,0 +1,21 @@
+.home-page{
+    display:flex;
+    justify-content:center;
+    padding-top:10%;
+    padding-bottom:22%;
+}
+
+.home-page{
+    background: linear-gradient(to right, #f0ee977c 50%, #adeb957c 50%);;
+}
+
+.home-div p{
+    text-align:center;
+    font-weight: 800;
+    color:rgb(0, 47, 255);
+    font-size:3vh;
+}
+
+.home-div h1{
+    font-weight: 400;
+}
