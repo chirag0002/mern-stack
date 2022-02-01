@@ -16,6 +16,7 @@
 .form-input{
     margin:0 2vh;
     border:none;
+    outline: none;
 }
 
 .form-submit{

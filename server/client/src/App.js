@@ -9,7 +9,7 @@ import {Route, Routes} from 'react-router-dom';
 
 
 const App = () => {
-  return <div>
+  return <div className="bg-light">
     <Navbar />
     
     <Routes>

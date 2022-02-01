@@ -63,7 +63,7 @@ const Contact = () => {
                   <input className="contact-form-phone input-field"  type="number" id="contact-form-phone" placeholder="Your Phone" required="true" />
                 </div>
                 <div className="contact-form-text mt-4">
-                  <textarea className="contact-form-message text-field" placeholder="Message" cols="96" rows="4"></textarea>
+                  <textarea className="contact-form-message text-field" placeholder="Message" cols="97" rows="3"></textarea>
                 </div>
                 <div className="contact-form-button">
                   <button type="submit" className="button contact-submit-button">Send Message</button>

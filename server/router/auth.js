@@ -27,11 +27,11 @@ router.get('/signin', (req, res) => {
     res.send('Log In route from the server');
 });
 
-router.get('/signup', (req, res) => {
+router.get('/register', (req, res) => {
     res.send('Register route from the server');
 });
 
-router.post('/signup', async (req,res) => {
+router.post('/register', async (req,res) => {
 
     const { name, email, phone, work, password, cpassword} = req.body;
 
