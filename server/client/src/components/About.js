@@ -1,11 +1,46 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../style/About.css';
 import chirag from '../images/Chirag.JPG';
+import {useNavigate} from 'react-router-dom';
 
 const About = () => {
+  
+  const navigate = useNavigate();
+  const callAboutPage = async () => {
+      console.log('About')
+      try {
+          const res = await fetch("/about", {
+            method: 'GET',
+            headers:{
+              "Accept": 'application/json',
+              "Content-Type": 'application/json'
+            },
+            credentials:"include"
+          });
+          const data = await res.json();
+          console.log(data);
+
+          if(!res.status === 200){
+            const error = new Error(res.error);
+            throw error;
+          }
+
+      } catch (err) {
+          console.error(err);
+          navigate("/login");
+      }
+  }
+
+
+  useEffect(() => {
+    callAboutPage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
   return <div>
      <div className="container emp-profile">
-       <form method=" ">
+       <form method="GET">
          <div className="row">
 
            <div className="col-md-4 emp-img">

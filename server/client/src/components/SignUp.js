@@ -26,11 +26,11 @@ const SignIn = () => {
     e.preventDefault();
     console.log("inside post");
     const {name, email, phone, work, password, cpassword}= user;
-    const respo = await fetch("/register", {
-      method: "post",
-      headers: {
+    const res = await fetch("/register", {
+      method: "POST",
+      headers:{
         "Content-Type": "application/json",
-        'Accept': 'application/json'
+        "Accept": 'application/json'
       },
       body:JSON.stringify({
         name,
@@ -41,8 +41,8 @@ const SignIn = () => {
         cpassword
       })
     });
-    const data= await respo.json();
-    if(data.status===422 || !data){
+    const data= await res.json();
+    if(res.status===422 || !data){
       window.alert("Invalid Registration");
       console.log("Invalid Registration");
     } else {
@@ -61,7 +61,7 @@ const SignIn = () => {
                 Sign Up
               </h2>
               <div className="d-flex">
-              <form method ="post" className="register-form" id ="register-form">
+              <form method ="POST" className="register-form" id ="register-form">
 
 
                 <div className="form-group">
