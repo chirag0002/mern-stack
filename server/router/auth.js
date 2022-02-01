@@ -2,20 +2,13 @@ const express= require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const bcrypt= require('bcryptjs');
+const authenticate = require('../middleware/authenticate');
 
 require('../db/connection');
 const User = require('../model/userSchema');
 
-const middleware = (req, res, next)=>{
-    console.log('middleware');
-    next();
-}
 
-router.get('/', (req, res) => {
-    res.send('Hello route from the server');
-});
-
-router.get('/about', middleware, (req, res) => {
+router.get('/about', (req, res) => {
     res.send('About route from the server');
 });
 
@@ -32,7 +25,7 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', async (req,res) => {
-
+console.log('inside register');
     const { name, email, phone, work, password, cpassword} = req.body;
 
     if(!name || !email || !phone || !work || !password || !cpassword) {
@@ -70,7 +63,7 @@ router.post('/signin', async (req,res) => {
             const isMatch = await bcrypt.compare(password, userLogin.password);
 
             const token = await userLogin.generateAuthToken();
-            res.cookie("_km_id", token, {
+            res.cookie("unq_tkn", token, {
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly:true
             });
@@ -88,6 +81,11 @@ router.post('/signin', async (req,res) => {
     } catch(err){
         console.log(err);
     }
+});
+
+router.get('/about', authenticate, (req, res)=>{
+    console.log("Hello About");
+    res.send("Hello server");
 });
 
 module.exports = router;

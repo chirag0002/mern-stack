@@ -1,8 +1,21 @@
-import React from 'react';
+// import React, {useContext} from 'react';
 import{NavLink} from 'react-router-dom';
 import logo from '../images/logo.png';
 
+
 const Navbar = () => {
+  // const {state, dispatch}=useContext(userContext);
+  // const RenderMenu = () =>{
+  //   if (state) {
+  //     return(
+  //      <>
+  //      <li className="nav-item active">
+  //        <NavLink exact activeClassName="active-page" className="nav-link" to="/">Home</NavLink>
+  //      </li>
+  //      </>
+  //     );
+  //   }
+  // }
   return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
