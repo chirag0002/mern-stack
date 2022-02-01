@@ -25,6 +25,7 @@
 .login-form-input{
     margin:0 2vh;
     border:none;
+    outline: none;
 }
 
 .login-form-submit{
