@@ -2,8 +2,13 @@ import React, {useState} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import '../style/LogIn.css';
 import login from '../images/login.svg'
+// import {UserContext} from '../App';
+
 
 const LogIn = () => {
+
+  // eslint-disable-next-line no-unused-vars
+  // const {state, dispatch} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -28,6 +33,7 @@ const LogIn = () => {
       window.alert("Invalid Credentials");
       console.log("Invalid Credentials");
     } else {
+      // dispatch({type:"USER", payload:true});
       window.alert("Login Successfull");
       console.log("Login Successfull");
       navigate('/');

@@ -8,22 +8,6 @@ require('../db/connection');
 const User = require('../model/userSchema');
 
 
-router.get('/about', (req, res) => {
-    res.send('About route from the server');
-});
-
-router.get('/contact', (req, res) => {
-    res.send('Contact route from the server');
-});
-
-router.get('/signin', (req, res) => {
-    res.send('Log In route from the server');
-});
-
-router.get('/register', (req, res) => {
-    res.send('Register route from the server');
-});
-
 router.post('/register', async (req,res) => {
 console.log('inside register');
     const { name, email, phone, work, password, cpassword} = req.body;
@@ -63,8 +47,9 @@ router.post('/signin', async (req,res) => {
             const isMatch = await bcrypt.compare(password, userLogin.password);
 
             const token = await userLogin.generateAuthToken();
-            res.cookie("unq_tkn", token, {
-                expires: new Date(Date.now() + 25892000000),
+            console.log(token);
+            res.cookie("jwtoken", token, {
+                expires: new Date(Date.now() + 1000000),
                 httpOnly:true
             });
 
@@ -83,9 +68,18 @@ router.post('/signin', async (req,res) => {
     }
 });
 
-router.get('/about', authenticate, (req, res)=>{
-    console.log("Hello About");
-    res.send("Hello server");
+router.get('/abouts', authenticate, (req, res)=>{
+    res.send(req.rootUser);
 });
+
+router.get('/contacts', authenticate, (req, res) => {
+    res.send(req.rootUser);
+});
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('jwtoken', {path:"/"});
+    res.status(200).send("Log Out");
+});
+
 
 module.exports = router;
