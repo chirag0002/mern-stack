@@ -1,7 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/Contact.css';
 
 const Contact = () => {
+
+  const [userData, setUserData] = useState({});
+
+  const contactPage = async () => {
+      try {
+          const res = await fetch('/contacts', {
+            method: "GET",
+            headers:{
+              "Content-Type": 'application/json',
+               Accept: 'application/json'
+            }
+          });
+          const data = await res.json();
+          console.log(data);
+          setUserData(data);
+
+          if(!res.status === 200) {
+            const error = new Error(res.error);
+            throw error;
+          }
+
+      } catch (err) {
+          console.error(err);
+      }
+  }
+
+  useEffect(() => {
+    contactPage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
   return <div>
     <div className="contact-info mt-4">
       <div className="container-fluid">
@@ -56,11 +88,11 @@ const Contact = () => {
               <div className="contact-form-title">
                 Get in Touch
               </div>
-              <form id="contact-form">
+              <form method="GET" id="contact-form">
                 <div className="contact-form-name d-flex justify-content-between align-content-between">
-                  <input className="contact-form-name input-field"  type="text" id="contact-form-name" placeholder="Your Name" required="true" />
-                  <input className="contact-form-email input-field"  type="email" id="contact-form-email" placeholder="Your Email" required="true" />
-                  <input className="contact-form-phone input-field"  type="number" id="contact-form-phone" placeholder="Your Phone" required="true" />
+                  <input className="contact-form-name input-field"  type="text" id="contact-form-name" value={userData.name} placeholder="Your Name" required="true" />
+                  <input className="contact-form-email input-field"  type="email" id="contact-form-email" placeholder="Your Email" value={userData.email} required="true" />
+                  <input className="contact-form-phone input-field"  type="number" id="contact-form-phone" placeholder="Your Phone" value={userData.phone}required="true" />
                 </div>
                 <div className="contact-form-text mt-4">
                   <textarea className="contact-form-message text-field" placeholder="Message" cols="97" rows="3"></textarea>
