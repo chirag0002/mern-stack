@@ -17,9 +17,9 @@ const User = require('./model/userSchema');
 const PORT=process.env.PORT;
 
 
-// if (process.env.NODE_ENV == 'production') {
-//     app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV == 'production') {
+    app.use(express.static("client/build"));
+}
 
 app.listen(PORT, ()=> {
     console.log(`server is running at port ${PORT}`);
